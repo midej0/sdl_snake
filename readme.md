@@ -1,0 +1,1 @@
+using sdl to make a snake game. This is my first ever sdl project and i'm using this for practice

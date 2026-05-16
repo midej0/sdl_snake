@@ -1,0 +1,116 @@
+# Build output
+build/
+out/
+bin/
+obj/
+
+# Compiled object files
+*.o
+*.obj
+
+# Compiled shared/static libraries
+*.so
+*.so.*
+*.a
+*.lib
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Make
+*.d
+
+# Ninja
+.ninja_deps
+.ninja_log
+
+# Autotools
+Makefile.in
+configure
+autom4te.cache/
+aclocal.m4
+compile
+config.guess
+config.sub
+depcomp
+install-sh
+missing
+
+# SDL (local/vendored copies)
+SDL2/
+SDL2-*/
+sdl2/
+
+# Dependencies / package managers
+vcpkg_installed/
+.conan/
+conanbuildinfo.*
+conaninfo.txt
+graph_info.json
+
+# IDE - Visual Studio
+.vs/
+*.vcxproj.user
+*.VC.db
+*.VC.opendb
+ipch/
+*.suo
+*.sdf
+
+# IDE - CLion / JetBrains
+.idea/
+cmake-build-*/
+
+# IDE - VS Code
+.vscode/
+*.code-workspace
+
+# IDE - Xcode
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+# IDE - Eclipse
+.cproject
+.project
+.settings/
+
+# Crash dumps & logs
+*.dmp
+*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.dSYM/
+snake
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.Trash-*
