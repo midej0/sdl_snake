@@ -1,26 +1,19 @@
-#include <cmath>
+#pragma once
+
+#include "structs.h"
 
 int columns;
 int rows;
 int *map;
 
-struct Color
-{
-    int red;
-    int green;
-    int blue;
-    int alpha;
-};
-
-struct Vector2
-{
-    int x;
-    int y;
-};
-
 Vector2 IndexToGridPos(int index)
 {
-    return Vector2{index/rows, index % rows};
+    return Vector2{index / rows, index % rows};
+}
+
+int GridPosToIndex(Vector2 pos)
+{
+    return (pos.x * rows) + pos.y;
 }
 
 void CreateEmptyMap(int r, int c)

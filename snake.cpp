@@ -1,7 +1,9 @@
 #include <iostream>
 #include <map>
 #include <SDL2/SDL.h>
-#include "globalstuff.h"
+#include "structs.h"
+#include "map.h"
+#include "game.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,9 +12,11 @@ int main(int argc, char *argv[])
         {2, Color{255, 0, 0, 255}}};
 
     bool running = true;
-    int gridSize = 10;
-    
+    int gridSize = 75;
+
     CreateEmptyMap(10, 10);
+
+    SpawnFruit();
 
     srand(time(0));
 
@@ -25,13 +29,15 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < columns * rows; i++)
     {
-        if(map[i] == 0){
+        if (map[i] == 0)
+        {
             continue;
         }
         Color color = colors[map[i]];
         Vector2 tilePosition = IndexToGridPos(i);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.alpha);
-        SDL_Rect rectangle = {tilePosition.x * gridSize, tilePosition.x * gridSize, gridSize, gridSize};
+        SDL_Rect rectangle = {tilePosition.x * gridSize, tilePosition.y * gridSize, gridSize, gridSize};
         SDL_RenderFillRect(renderer, &rectangle);
     }
     SDL_RenderPresent(renderer);
@@ -46,6 +52,7 @@ int main(int argc, char *argv[])
         }
     }
 done:
+    DeleteMapPointer();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
