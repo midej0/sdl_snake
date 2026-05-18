@@ -2,20 +2,22 @@
 #include <map>
 #include <SDL2/SDL.h>
 #include "structs.h"
+#include "player.h"
 #include "map.h"
-#include "game.h"
+#include "spawn.h"  
 
 int main(int argc, char *argv[])
 {
+    srand(time(0));
+    CreateEmptyMap(100, 100);
+
+    Player player(Vector2{10, 19}, Vector2{0, -1}, 100, 1);
     std::map<int, Color> colors = {
         {1, Color{255, 255, 255, 255}},
         {2, Color{255, 0, 0, 255}}};
 
     bool running = true;
-    int gridSize = 35;
-
-    CreateEmptyMap(20, 20);
-    srand(time(0));
+    int gridSize = 10;
 
     SpawnFruit();
 
@@ -50,7 +52,11 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        Tick(SDL_GetTicks64());
+
+        if (uint64_t(SDL_GetTicks64()) >= player.GetLastMoveTime() + player.GetMoveTime())
+        {
+            player.Move(SDL_GetTicks64());
+        }
 
         // Rendering
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
