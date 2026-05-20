@@ -51,7 +51,7 @@ public:
         newHeadPos.x += velocity.x;
         newHeadPos.y += velocity.y;
 
-        if (map[GridPosToIndex(newHeadPos)] == 1 || newHeadPos.x * newHeadPos.y < 0 || newHeadPos.y >= rows || newHeadPos.x >= columns)
+        if (map[GridPosToIndex(newHeadPos)] == 1 || newHeadPos.y < 0 || newHeadPos.x < 0 || newHeadPos.y >= rows || newHeadPos.x >= columns)
         {
             TriggerGrace(time);
         }

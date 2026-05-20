@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     srand(time(0));
     CreateEmptyMap(30, 20);
 
-    Player player(Vector2{columns / 2, rows / 2}, Vector2{0, -1}, 100, 1, 1000);
+    Player player(Vector2{columns / 2, rows / 2}, Vector2{0, -1}, 100, 1, 500);
     std::map<int, Color> colors = {
         {1, Color{255, 255, 255, 255}},
         {2, Color{255, 0, 0, 255}}};
