@@ -4,20 +4,20 @@
 #include "structs.h"
 #include "player.h"
 #include "map.h"
-#include "spawn.h"  
+#include "spawn.h"
 
 int main(int argc, char *argv[])
 {
     srand(time(0));
-    CreateEmptyMap(100, 100);
+    CreateEmptyMap(30, 20);
 
-    Player player(Vector2{10, 19}, Vector2{0, -1}, 100, 1);
+    Player player(Vector2{columns / 2, rows / 2}, Vector2{0, -1}, 100, 1, 1000);
     std::map<int, Color> colors = {
         {1, Color{255, 255, 255, 255}},
         {2, Color{255, 0, 0, 255}}};
 
     bool running = true;
-    int gridSize = 10;
+    int gridSize = 35;
 
     SpawnFruit();
 
@@ -53,10 +53,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        if (uint64_t(SDL_GetTicks64()) >= player.GetLastMoveTime() + player.GetMoveTime())
-        {
-            player.Move(SDL_GetTicks64());
-        }
+        player.Tick(SDL_GetTicks64());
 
         // Rendering
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -75,6 +72,11 @@ int main(int argc, char *argv[])
             SDL_RenderFillRect(renderer, &rectangle);
         }
         SDL_RenderPresent(renderer);
+
+        if (!player.GetAlive())
+        {
+            goto done;
+        }
     }
 done:
     DeleteMapPointer();

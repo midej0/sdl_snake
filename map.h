@@ -16,7 +16,7 @@ int GridPosToIndex(Vector2 pos)
     return (pos.x * rows) + pos.y;
 }
 
-void CreateEmptyMap(int r, int c)
+void CreateEmptyMap(int c, int r)
 {
     columns = c;
     rows = r;
